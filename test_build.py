@@ -5,6 +5,6 @@ with open("token.txt", "r") as token_file:
 
 
 etsyClient = client.EtsyClient(requester)
-print(etsyClient.getMethodTable())
+print(etsyClient.getMethodTable().response.json())
 
 
