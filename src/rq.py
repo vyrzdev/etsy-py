@@ -74,7 +74,7 @@ class EtsyRequester:
             raise ValueError(f"Invalid HTTP method: {method}, are you manually running make_request?")
 
         uri_params_dict = dict()
-        for _ in range(0, len(required_uri_params)-1):
+        for _ in range(0, len(required_uri_params)):
             uri_params_dict.update(**{required_uri_params[_]: uri_params[_]})
 
         for uri_param_key, uri_param_value in uri_params_dict.items():
