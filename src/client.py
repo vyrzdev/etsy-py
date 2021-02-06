@@ -1,13 +1,16 @@
 import requests
-
-class EtsyResponse:
-    pass
+from . import rq, methods
+from inspect import getmembers, isfunction
 
 
 class EtsyClient:
-    def __init__(self, api_base_url="https://openapi.etsy.com/v2"):
+    def __init__(self, requester, api_base_url="https://openapi.etsy.com/v2", debug=False):
         self.api_base_url = api_base_url
+        self.requester = requester
+        self.debug = debug
 
-    def get_etsy_methods(self):
-        pass
 
+method_function_objects = getmembers(methods, isfunction)
+
+for method_name, method_object in method_function_objects:
+    setattr(EtsyClient, method_name, method_object)
