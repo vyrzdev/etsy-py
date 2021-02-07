@@ -1,7 +1,7 @@
 from .rq import RequiresOauth
 
 
-# These methods are all auto-generated from the Etsy Method Table, by updater.py periodically
+# These methods are all auto-generated from the Etsy Method Table, by method_generator.py periodically
 # Any manual changes will be overwritten!
 
 
