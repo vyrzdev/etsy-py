@@ -57,7 +57,7 @@ class EtsyRequester:
                  ):
 
         self.api_base_url = api_base_url
-        self.mode = auth_mode
+        self.auth_mode = auth_mode
 
         if auth_mode == "api_key":
             self.session: requests.Session = requests.Session()
