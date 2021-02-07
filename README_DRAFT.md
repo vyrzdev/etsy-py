@@ -74,8 +74,8 @@ etsy_client.updateListing("$listing_id", data={
 # If a request fails to complete for technical reasons, it will raise its expected 
 # exception from the requests library, however if Etsy returns a failed status code, the 
 # response object will return false on its .ok() method.
-# Requests return an EtsyResponse object, with the standard requests.
-# Response object contained within.
+
+# Requests return an rq.EtsyResponse object, with the standard requests.Response object contained within.
 
 
 ```
