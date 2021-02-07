@@ -24,7 +24,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           touch token.txt
-          ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
+          echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
           python3 updater.py
           git commit -A -m "Test Commit"
           git push
