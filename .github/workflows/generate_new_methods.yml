@@ -26,7 +26,7 @@ jobs:
           touch token.txt
           git config --global user.name "Etsy API Method Generator"
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
-          python3 updater.py
+          python3 method_generator.py
           git add -A
           git diff-index --quiet HEAD || git commit -m 'Generated new methods and stub files.'
           git push
