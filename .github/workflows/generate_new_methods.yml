@@ -2,7 +2,7 @@
 on:
   push:
     paths:
-      - 'updater.py'
+      - 'method_generator.py'
       - 'current_method_table.json'
 
   # Allows you to run this workflows manually from the Actions tab
