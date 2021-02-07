@@ -21,4 +21,4 @@ etsy_client = client.EtsyClient(
 )
 
 print(etsy_client.getMethodTable().response.content)
-print(etsy_client.findAllShopListingsInactive("23471684").response.content)
+print(etsy_client.findAllShopListingsInactive("$Removed_ShopID").response.content)
