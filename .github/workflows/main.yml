@@ -24,6 +24,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           touch token.txt
+          git config --global user.name "Etsy API Updater Bot"
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
           python3 updater.py
           git add -A
