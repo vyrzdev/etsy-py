@@ -1,4 +1,5 @@
 # Triggers the workflows on push or pull request events but only for the main branch
+name: Generate new methods & stub files.
 on:
   push:
     paths:
