@@ -1,0 +1,30 @@
+name: Check for API updates
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+  # Allows you to run this workflows manually from the Actions tab
+  workflow_dispatch:
+
+# A workflows run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflows contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          touch token.txt
+          git config --global user.name "Etsy API Method Table Updater"
+          echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
+          python3 method_table_updater.py
+          git add -A
+          git diff-index --quiet HEAD || git commit -m 'Detected change in Etsy API methods table!'
+          git push
