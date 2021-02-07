@@ -19,7 +19,7 @@ from <insert_package_name> import client, rq
 etsy_requester = rq.EtsyRequester(
   auth_mode="api_key", 
   api_key="____________"
-) # Only api_key auth mode is supported thus far, Oauth on its way!
+)
 
 etsy_client = client.EtsyClient(etsy_requester)
 
