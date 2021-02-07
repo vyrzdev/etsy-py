@@ -1,11 +1,11 @@
 import re
-import requests
+import json
 
-with open("token.txt", "r") as token_file:
-    methods_table: dict = requests.get(f"https://openapi.etsy.com/v2/", params={"api_key":token_file.readlines()[0][:-1]}).json()
+with open("current_method_table.json", "r") as method_table_file:
+    method_table_json_str = method_table_file.read()
+    methods_table = json.loads(method_table_json_str)
 
-
-print(f"Found {methods_table.get('count')} methods provided by Etsy API...")
+print(f"Found {methods_table.get('count')} methods in current_method_table.json")
 
 methods_file = open("src/methods.py", "r")
 print(methods_table)
