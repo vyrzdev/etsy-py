@@ -5,6 +5,4 @@ with open("token.txt", "r") as token_file:
 
 
 etsyClient = client.EtsyClient(requester)
-print(etsyClient.getListing(listing_id="734131682").response.content)
-
 

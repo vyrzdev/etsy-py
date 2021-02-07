@@ -1,8 +1,9 @@
-import serde
 import requests
+import requests_oauthlib
 import typing
 import re
 import html
+import dataclasses
 
 
 class InvalidAuthenticationMode(Exception):
@@ -36,6 +37,14 @@ class EtsyResponse:
         return self.response.status_code == 200
 
 
+@dataclasses.dataclass
+class EtsyOauthCredentials:
+    client_key: str
+    client_secret: str
+    resource_owner_key: str
+    resource_owner_secret: str
+
+
 class EtsyRequester:
     """
     Makes requests, handles authentication and such and such...
@@ -43,18 +52,29 @@ class EtsyRequester:
     def __init__(self,
                  auth_mode: str = "api_key",
                  api_key: typing.Union[None, str] = None,
+                 oauth_credentials: typing.Union[EtsyOauthCredentials, None] = None,
                  api_base_url: str = "https://openapi.etsy.com/v2"
                  ):
 
-        self.session: requests.Session = requests.Session()
         self.api_base_url = api_base_url
+        self.mode = auth_mode
 
         if auth_mode == "api_key":
+            self.session: requests.Session = requests.Session()
+            if api_key is None:
+                print("Warning: Etsy api_key expected as kwarg of Requester when using api_key authentication mode!")
             self.api_key = api_key
-            self.mode = auth_mode
             self.session.params.update(api_key=api_key)
         elif auth_mode == "oauth":
-            pass
+            if oauth_credentials is None:
+                print("Warning: oauth_credentials of type rq.EtsyOauthCredentials expected as kwarg of Requester when using oauth_1 authentication mode!")
+            self.session: requests_oauthlib.OAuth1Session = requests_oauthlib.OAuth1Session(
+                client_key=oauth_credentials.client_key,
+                client_secret=oauth_credentials.client_secret,
+                resource_owner_key=oauth_credentials.resource_owner_key,
+                resource_owner_secret=oauth_credentials.resource_owner_secret
+            )
+            # TODO: Test PUT/POST requests with Oauth auth mode.
         else:
             raise InvalidAuthenticationMode(auth_mode)
 
