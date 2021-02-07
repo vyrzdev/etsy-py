@@ -1,6 +1,11 @@
 from .rq import RequiresOauth
 
 
+# These methods are all auto-generated from the Etsy Method Table, by updater.py periodically
+
+
+# Any manual changes will be overwritten!
+
 # StartMethod: getMethodTable
 def getMethodTable(self, query_params=None):
     return self.requester.make_request(uri='/', uri_params=[], method='GET', query_params=query_params,)
