@@ -28,5 +28,5 @@ jobs:
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
           python3 updater.py
           git add -A
-          git commit -m "Test Commit"
+          git diff-index --quiet HEAD || git commit -m 'Test Commit'
           git push
