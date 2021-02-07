@@ -8,6 +8,7 @@ with open("token.txt", "r") as token_file:
 print(f"Found {methods_table.get('count')} methods provided by Etsy API...")
 
 methods_file = open("src/methods.py", "r")
+print(methods_table)
 
 currently_implemented_methods = dict()
 
@@ -38,7 +39,7 @@ if capture:
 
 
 def generate_method_code(method_definition_json: dict) -> list:
-    params: dict = method_definition_json["params"]
+    params: dict = method_definition_json.get("params")
     if params is None:
         params = {}
     uri = method_definition_json["uri"]
@@ -47,7 +48,6 @@ def generate_method_code(method_definition_json: dict) -> list:
     args = ""
     for param in uri_params:
         try:
-            params.pop(param)
             args += f" {param},"
         except KeyError:
             print(f"Incorrectly written method_definition for method: {method_definition_json['name']}\n"
@@ -118,7 +118,6 @@ def generate_stub_definition(method_definition_json):
     args = ""
     for param in uri_params:
         try:
-            params.pop(param)
             args += f" {param},"
         except KeyError:
             print(f"Incorrectly written method_definition for method: {method_definition_json['name']}\n"
