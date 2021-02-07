@@ -1,7 +1,6 @@
 # Triggers the workflows on push or pull request events but only for the main branch
 on:
   push:
-    branches: [ main ]
     paths:
       - 'updater.py'
       - 'current_method_table.json'
