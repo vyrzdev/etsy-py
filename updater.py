@@ -95,6 +95,8 @@ for method in methods_table.get("results"):
 with open("src/methods.py", "w") as build_file:
     file_header_lines = [
         "from .rq import RequiresOauth\n",
+        "\n# These methods are all auto-generated from the Etsy Method Table, by updater.py periodically\n",
+        "\n# Any manual changes will be overwritten!"
     ]
     header = "\n".join(file_header_lines)
 
