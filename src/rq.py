@@ -65,7 +65,7 @@ class EtsyRequester:
                 print("Warning: Etsy api_key expected as kwarg of Requester when using api_key authentication mode!")
             self.api_key = api_key
             self.session.params.update(api_key=api_key)
-        elif auth_mode == "oauth":
+        elif auth_mode == "oauth_1":
             if oauth_credentials is None:
                 print("Warning: oauth_credentials of type rq.EtsyOauthCredentials expected as kwarg of Requester when using oauth_1 authentication mode!")
             self.session: requests_oauthlib.OAuth1Session = requests_oauthlib.OAuth1Session(
