@@ -1369,7 +1369,7 @@ def deleteUserAddress(self, user_id, user_address_id, query_params=None):
 
 # StartMethod: getAvatarImgSrc
 def getAvatarImgSrc(self, user_id, query_params=None):
-    return self.requester.make_request(uri='/users/:user_id/avatar/etsy_py', uri_params=[ user_id,], method='GET', query_params=query_params,)
+    return self.requester.make_request(uri='/users/:user_id/avatar/src', uri_params=[ user_id,], method='GET', query_params=query_params,)
 # EndMethod: getAvatarImgSrc
 
 
