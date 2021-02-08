@@ -28,7 +28,7 @@ jobs:
       - name: Create Release
         uses: actions/create-release@v1
         with:
-          tag_name: Example-test-autorelease-tag
+          tag_name: etsy-method-auto-update-${{ GITHUB_RUN_NUMBER }}
           prerelease: true
           draft: false
         env:
