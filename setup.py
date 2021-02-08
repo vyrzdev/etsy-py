@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="etsy-py-dev",
-    version="0.0.1",
+    version="0.0.2",
     author="vyrzdev",
     author_email="ben@vyrz.dev",
     description="An auto-updating Etsy Wrapper",
