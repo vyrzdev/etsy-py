@@ -8,7 +8,6 @@ with open("current_method_table.json", "r") as method_table_file:
 print(f"Found {methods_table.get('count')} methods in current_method_table.json")
 
 methods_file = open("src/methods.py", "r")
-print(methods_table)
 
 currently_implemented_methods = dict()
 
