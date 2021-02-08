@@ -22,6 +22,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           git clone https://github.com/vyrzdev/etsy-py.git
+          cd etsy-py
           git checkout main
           touch token.txt
           git config --global user.name "Etsy API Method Generator"
