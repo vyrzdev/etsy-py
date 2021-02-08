@@ -21,11 +21,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          git checkout main
           touch token.txt
           git config --global user.name "Etsy API Method Generator"
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
           python3 method_generator.py
-          git checkout main
           git add -A
           git diff-index --quiet HEAD || git commit -m 'Generated new methods and stub files.'
           git push
