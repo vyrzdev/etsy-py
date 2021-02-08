@@ -31,3 +31,5 @@ jobs:
           tag_name: Example-test-autorelease-tag
           prerelease: true
           draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }
