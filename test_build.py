@@ -1,4 +1,4 @@
-from src import client, rq
+from etsy_py import client, rq
 
 with open("token.txt", "r") as token_file:
     requester = rq.EtsyRequester(auth_mode="api_key", api_key=token_file.readlines()[0][:-1])

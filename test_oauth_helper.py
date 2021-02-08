@@ -1,4 +1,4 @@
-from src import oauth_helper, client, rq
+from etsy_py import oauth_helper, client, rq
 
 with open("token.txt", "r") as token_file:
     helper = oauth_helper.EtsyOauthHelper(token_file.read()[:-1], shared_secret="$Removed_Secret")
