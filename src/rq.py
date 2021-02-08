@@ -93,9 +93,7 @@ class EtsyRequester:
         if method not in ["GET", "PUT", "POST", "PATCH", "DELETE"]:
             raise ValueError(f"Invalid HTTP method: {method}, are you manually running make_request?")
 
-        uri_params_dict = dict()
-        for _ in range(0, len(required_uri_params)):
-            uri_params_dict.update(**{required_uri_params[_]: uri_params[_]})
+        uri_params_dict = {required_uri_params[i]: uri_params[i] for i in range(0, len(required_uri_params))}
 
         for uri_param_key, uri_param_value in uri_params_dict.items():
             uri = uri.replace(f":{uri_param_key}", html.escape(uri_param_value))
