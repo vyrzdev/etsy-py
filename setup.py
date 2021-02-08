@@ -1,11 +1,15 @@
 import setuptools
+import json
 
 with open("README.md", "r", encoding="utf-8") as fh:
     readme = fh.read()
 
+with open("current_release.json", "r") as release_info_file:
+    release_info: dict = json.loads(release_info_file.read())
+
 setuptools.setup(
     name="etsy-py-dev",
-    version="0.0.2",
+    version=release_info.get("version_tag"),
     author="vyrzdev",
     author_email="ben@vyrz.dev",
     description="An auto-updating Etsy Wrapper",
