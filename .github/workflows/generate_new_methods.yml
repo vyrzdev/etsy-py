@@ -29,5 +29,6 @@ jobs:
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
           python3 method_generator.py
           git add -A
+          git checkout main
           git diff-index --quiet HEAD || git commit -m 'Generated new methods and stub files.'
           git push

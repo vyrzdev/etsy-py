@@ -26,5 +26,6 @@ jobs:
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
           python3 method_table_updater.py
           git add -A
+          git checkout main
           git diff-index --quiet HEAD || git commit -m 'Detected change in Etsy API methods table!'
           git push
