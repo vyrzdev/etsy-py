@@ -20,11 +20,11 @@ jobs:
     steps:
       # Runs a set of commands using the runners shell
       - uses: actions/checkout@v2
-          with:
-            ref: main
+        with:
+          ref: main
 
       - name: Run a multi-line script
-      - run: |
+        run: |
           touch token.txt
           git config --global user.name "Etsy API Method Generator"
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
