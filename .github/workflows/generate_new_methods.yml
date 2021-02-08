@@ -24,7 +24,7 @@ jobs:
             ref: main
 
       - name: Run a multi-line script
-        run: |
+      - run: |
           touch token.txt
           git config --global user.name "Etsy API Method Generator"
           echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
