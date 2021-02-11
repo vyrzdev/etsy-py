@@ -8,9 +8,7 @@ with open("current_release.json", "r") as current_release_json_file:
     current_release_json = json.loads(current_release_json_file.read())
 
 
-latest_commit_hash = str(os.system("git rev-parse HEAD"))
-latest_commit_hash = latest_commit_hash[:-3]
-print(len(latest_commit_hash))
+latest_commit_hash = os.popen("git rev-parse HEAD").readlines()[0].strip("\n")
 
 version_tag = f"etsy-py-feature-v{current_release_json.get('feature_version')}-api-v{current_release_json.get('api_version')}"
 
