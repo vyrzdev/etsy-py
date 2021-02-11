@@ -1,0 +1,10 @@
+{%- from './method_templ.jinja2' import generate_method %}from .rq import RequiresOauth
+
+
+# These methods are all auto-generated from the Etsy Method Table, by method_generator.py periodically
+# Any manual changes will be overwritten!
+
+
+{%- for method in methods %}
+{{ generate_method(method) }}
+{% endfor %}

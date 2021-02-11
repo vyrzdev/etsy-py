@@ -1,0 +1,3 @@
+{%- macro generate_method_stub(method) %}
+    def {{ method.name }}(self,{% for uri_parameter in method.uri_parameters %} {{ uri_parameter }},{% endfor %} query_params: typing.Union[None, dict] = ...,{% if method.http_method in ["POST", "PUT"] %} data: typing.Union[None, dict] = ...,{% endif %}) -> rq.EtsyResponse: ...
+{%- endmacro %}

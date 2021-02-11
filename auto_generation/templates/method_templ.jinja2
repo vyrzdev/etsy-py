@@ -1,0 +1,17 @@
+{%- macro generate_method(method) %}
+# StartMethod: {{ method.name }}
+# uri_parameters: {{ method.uri_parameters | join("|") }}
+# http_method: {{ method.http_method }}
+def {{ method.name }}(self,{% if method.uri_parameters|length > 0 %} {{ method.uri_parameters | join(", ") }},{% endif %} query_params=None{% if method.http_method in ["POST", "PUT"] %}, data=None{% endif %}):
+    {%- if method.oauth_required %}
+    if self.requester.auth_mode == "api_key":
+        raise RequiresOauth
+    {% endif %}
+    return self.requester.make_request(
+        uri="{{ method.uri }}",
+        uri_params=[{{ method.uri_parameters | join(", ") }}],
+        method="{{ method.http_method }}",
+        query_params=query_params
+    )
+# EndMethod: {{ method.name }}
+{%- endmacro %}
