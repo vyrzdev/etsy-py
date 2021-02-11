@@ -52,5 +52,6 @@ new_client_pyi_str = env.get_template("client_pyi_template.jinja2").render(metho
 with open("etsy_py/client.pyi", "w") as new_client_pyi_file:
     new_client_pyi_file.write(new_client_pyi_str)
 
+print(f"ON THE EXIT OF GENERATOR::: API_VERSION={current_release['api_version']}")
 
 
