@@ -43,11 +43,5 @@ jobs:
 
       - name: Create Release
         run: |
-          python auto_generation/load_version_environment_variables.py
-        uses: actions/create-release@v1
-        with:
-          tag_name: etsy-py-feature-v${{ env.CURRENT_FEATURE_VERSION }}-api-v${{ env.CURRENT_API_VERSION }}
-          prerelease: true
-          draft: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pip install PyGithub
+          python auto_generation/create_new_github_release.py ${{ secrets.GITHUB_TOKEN }}
