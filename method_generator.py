@@ -6,7 +6,7 @@ import re
 
 
 env = jinja2.Environment(
-    loader=jinja2.PackageLoader('method_generator', 'auto_generation/templates'),
+    loader=jinja2.FileSystemLoader('auto_generation/templates'),
 )
 
 
@@ -26,10 +26,13 @@ with open("current_method_table.json", "r") as current_method_table_file:
 with open("current_release.json", "r") as current_release_json_file:
     current_release = json.loads(current_release_json_file.read())
 
+print(current_release["api_version"])
 current_release["api_version"] += 1
+print(current_release["api_version"])
 
 with open("current_release.json", "w") as current_release_json_file:
     current_release_json_file.write(json.dumps(current_release))
+
 
 built_methods: typing.List[Method] = list()
 for method_json in method_table.get("results"):
