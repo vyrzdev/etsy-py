@@ -1,0 +1,53 @@
+# Triggers the workflows on push or pull request events but only for the main branch
+name: Auto-Update Library.
+on:
+  push:
+    branches: [main]
+    tags-ignore:
+      - '**'
+    paths:
+      - 'current_method_table.json'
+
+  # Allows you to run this workflows manually from the Actions tab
+  workflow_dispatch:
+
+# A workflows run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflows contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a set of commands using the runners shell
+      - uses: actions/checkout@v2
+        with:
+          ref: main
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+
+      - name: Build new methods and stub files
+        run: |
+          touch token.txt
+          git config --global user.name "Etsy API Method Generator"
+          echo ${{ secrets.ETSY_KEY_FOR_ACTION }} > token.txt
+          pip install jinja2
+          python method_generator.py
+          git add -A
+          git diff-index --quiet HEAD || git commit -m 'Generated new methods and stub files.'
+          git push
+
+
+      - name: Create Release
+        run: |
+          python auto_generation/load_version_environment_variables.py
+        uses: actions/create-release@v1
+        with:
+          tag_name: etsy-py-feature-v${{ env.CURRENT_FEATURE_VERSION }}-api-v${{ env.CURRENT_API_VERSION }}
+          prerelease: true
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
