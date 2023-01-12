@@ -1,5 +1,7 @@
 # EtsyPy ~ The only working Etsy API wrapper!
 
+The v2 API will be being retired soon, I will be rewriting this for v3 over the next couple months.
+
 This wrapper auto-generates itself from the API spec provided by Etsy at `openapi.etsy.com/v2/`
 
 Instead of generating at runtime, it generates itself as the API changes through a set of Github Actions, this means you need to be sure to keep it up to date! You can check if you are up to date by calling `{{packagename}}.need_update()`
